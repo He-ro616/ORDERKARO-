@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        } 
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            transition: left 0.3s, background-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar.open {
+            left: 0;
+            background-color: rgb(255, 254, 254); /* Opaque when toggled */
+        }
+
+        .sidebar a {
+            color: #E64A19;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #E64A19;
+            color:white;
+        }
+
+        .sidebar a.active {
+            background-color: #E64A19;
+            color:white;
+        }
+        .logo{
+            width: 100px;
+            height: auto;
+        }
+
+        .content {
+            margin-left: 0;
+            padding: 20px;
+            flex-grow: 0;
+            transition: margin-left 0.3s;
+        }
+
+        .content.shift {
+            margin-left: 250px;
+        }
+
+        .menu-button {
+            position: fixed;
+            height: 40px;
+            width:40px;
+            top: 20px;
+            left: 20px;
+            background-color:#E64A19;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 2000;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 150px;
+            resize: none;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #E64A19;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #E64A19;
+        }
+        .info {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-button" onclick="toggleSidebar()">&#9776;</button>
+
+    <div class="sidebar">
+        <br>
+        <br>
+        <a href="index.html" onclick="setActive(event)">Home</a>
+        <a href="cart.html" onclick="setActive(event)"> Cart</a>
+        <a href="history.html".html" onclick="setActive(event)">History</a>
+        <a href="CONTACTUS.HTML" onclick="setActive(event)">Contact Us</a>
+        <a href="login.html" onclick="setActive(event)">Login in </a>
+    </div>
+<header>
+<br><br></header>
+    <div class="container">
+        <h1>Contact Us</h1>
+        <!-- Formspree integration without file upload -->
+        <form action="https://formspree.io/f/xrbbkgyr" method="POST">
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+            </div>
+            <!-- Subject Field -->
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Enter the subject" required>
+            </div>
+            <!-- Message Field -->
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+            </div>
+            <!-- Submit Button -->
+            <button type="submit">Send Message</button>
+        </form>
+        <div class="info">
+            <p>Need more help? Email us at <a href="mailto:orderkaro.co@gmail.com">orderkaro.co@gmail.com</a></p>
+            <p>Or call us at 7880678997</p>
+        </div>
+    </div>
+<script>
+function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const content = document.querySelector('.content');
+            sidebar.classList.toggle('open');
+            content.classList.toggle('shift');
+        }
+
+        function setActive(event) {
+            const links = document.querySelectorAll('.sidebar a');
+            links.forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+</script>
+</body>
+</html>

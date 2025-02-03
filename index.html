@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORDER KARO! Your Delivery Partner</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            transition: left 0.3s, background-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar.open {
+            left: 0;
+            background-color: rgb(255, 254, 254); /* Opaque when toggled */
+        }
+
+        .sidebar a {
+            color: #FF5722;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #FF5722;
+            color:white;
+        }
+
+        .sidebar a.active {
+            background-color: #FF5722;
+            color:white;
+        }
+        .logo{
+            width: 100px;
+            height: auto;
+        }
+
+        .content {
+            margin-left: 0;
+            padding: 20px;
+            flex-grow: 0;
+            transition: margin-left 0.3s;
+        }
+
+        .content.shift {
+            margin-left: 250px;
+        }
+
+        .menu-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color:#FF5722;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 2000;
+        }
+        header {
+            background-image: url('https://via.placeholder.com/1920x600'); /* Replace with a campus-related background image */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+        header::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        header h1 {
+            font-size: 3.5rem;
+            margin: 0;
+            z-index: 1;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+            z-index: 1;
+        }
+        header .search-bar {
+            z-index: 1;
+            margin-top: 20px;
+        }
+        .search-bar input[type="text"] {
+            width: 50%;
+            padding: 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+        .search-bar button {
+            padding: 15px 20px;
+            font-size: 1rem;
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        .search-bar button:hover {
+            background-color: #E64A19;
+        }
+        .features {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #f4f4f9;
+        }
+        .features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .features .feature-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .feature {
+            flex: 1 1 calc(30% - 20px);
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .feature img {
+            width: 80px;
+            margin-bottom: 15px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="menu-button" onclick="toggleSidebar()">&#9776;</button>
+
+        <div class="sidebar">
+            <br>
+            <br>
+            <a href="index.html" onclick="setActive(event)">Home</a>
+            <a href="cart.html" onclick="setActive(event)"> Cart</a>
+            <a href="history.html".html" onclick="setActive(event)">History</a>
+            <a href="CONTACTUS.HTML" onclick="setActive(event)">Contact Us</a>
+            <a href="login.html" onclick="setActive(event)">Login in </a>
+        </div>
+        <h1>ORDER <i>karo!</i></h1>
+        <p> Saman chahiye hum hai na !</p>
+        <div class="search-bar">
+            <input type="text" placeholder="What do you need? (e.g., snacks, books)">
+            <button>Search</button>
+        </div>
+    </header>
+
+    <section class="features">
+        <h2>Why Choose Us?</h2>
+        <div class="feature-grid">
+            <div class="feature">
+                <img src="https://cdn-icons-png.flaticon.com/128/11094/11094629.png" alt="Feature 1">
+                <h3>Affordable Delivery</h3>
+                <p>Get your items at minimal delivery charges.</p>
+            </div>
+            <div class="feature">
+                <img src="https://cdn-icons-png.flaticon.com/128/6718/6718273.png" alt="Feature 2">
+                <h3>Peer-to-Peer Support</h3>
+                <p>Help and get help from fellow students.</p>
+            </div>
+            <div class="feature">
+                <img src="https://cdn-icons-png.flaticon.com/128/6577/6577243.png" alt="Feature 3">
+                <h3>Convenient Requests</h3>
+                <p>Request items easily and track delivery.</p>
+            </div>
+        </div>
+    </section>
+    <script>
+
+         function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const content = document.querySelector('.content');
+            sidebar.classList.toggle('open');
+            content.classList.toggle('shift');
+        }
+
+        function setActive(event) {
+            const links = document.querySelectorAll('.sidebar a');
+            links.forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+    </script>
+
+    <footer>
+        <p>&copy; 2025 CampusConnect. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

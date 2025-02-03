@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            transition: left 0.3s, background-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar.open {
+            left: 0;
+            background-color: rgb(255, 254, 254); /* Opaque when toggled */
+        }
+
+        .sidebar a {
+            color: #FF5722;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #FF5722;
+            color:white;
+        }
+
+        .sidebar a.active {
+            background-color:#FF5722;
+            color:white;
+        }
+        .logo{
+            width: 100px;
+            height: auto;
+        }
+
+        .content {
+            margin-left: 0;
+            padding: 20px;
+            flex-grow: 0;
+            transition: margin-left 0.3s;
+        }
+
+        .content.shift {
+            margin-left: 250px;
+        }
+
+        .menu-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            height: 4cm;
+            width: 40px;
+            background-color:#FF5722;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 2000;
+        }
+        header {
+            background-color:rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            text-align: center;
+            padding: 10px;
+            background-color: #FF5722;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #eaf3ea;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #FF5722;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #FF5722;
+        }
+        .requests {
+            margin-top: 20px;
+        }
+        .request-item {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+        <button class="menu-button" onclick="toggleSidebar()">&#9776;</button>
+
+            <div class="sidebar">
+                <br>
+                <br>
+                <a href="index.html" onclick="setActive(event)">Home</a>
+                <a href="cart.html" onclick="setActive(event)"> Cart</a>
+                <a href="history.html".html" onclick="setActive(event)">History</a>
+                <a href="CONTACTUS.HTML" onclick="setActive(event)">Contact Us</a>
+                <a href="login.html" onclick="setActive(event)">Login in </a>
+            </div>
+        <header>
+        <h1>ORDER karo!</h1>
+        <p>Connecting Students, Simplifying Lives</p>
+    </header>
+
+    <nav>
+        <a href="#place-request">Place Request</a>
+        <a href="#browse-requests">Browse Requests</a>
+    </nav>
+
+    <div class="container">
+        <section id="place-request">
+            <h2>Place a Request</h2>
+            <form>
+                <label for="item">Item Needed:</label>
+                <input type="text" id="item" name="item" placeholder="e.g., Notebook, Snacks" required>
+
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" placeholder="e.g., 2" required>
+
+                <label for="details">Additional Details:</label>
+                <input type="text" id="details" name="details" placeholder="e.g., Specific brand, time needed">
+
+                <label for="location">Delivery Location:</label>
+                <input type="text" id="location" name="location" placeholder="e.g., Hostel A, Room 123" required>
+
+                <button type="submit">Submit Request</button>
+            </form>
+        </section>
+
+        <section id="browse-requests" class="requests">
+            <h2>Browse Requests</h2>
+            <div class="request-item">
+                <strong>Item:</strong> Notebook <br>
+                <strong>Quantity:</strong> 2 <br>
+                <strong>Details:</strong> Any brand <br>
+                <strong>Location:</strong> Hostel A, Room 123
+            </div>
+            <div class="request-item">
+                <strong>Item:</strong> Chips <br>
+                <strong>Quantity:</strong> 3 <br>
+                <strong>Details:</strong> Lay's (Classic) <br>
+                <strong>Location:</strong> Hostel B, Room 202
+            </div>
+        </section>
+    </div>
+    <script>
+        function toggleSidebar() {
+           const sidebar = document.querySelector('.sidebar');
+           const content = document.querySelector('.content');
+           sidebar.classList.toggle('open');
+           content.classList.toggle('shift');
+       }
+
+       function setActive(event) {
+           const links = document.querySelectorAll('.sidebar a');
+           links.forEach(link => link.classList.remove('active'));
+           event.target.classList.add('active');
+       }
+
+   </script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            transition: left 0.3s, background-color 0.3s;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .sidebar.open {
+            left: 0;
+            background-color: rgb(255, 254, 254); /* Opaque when toggled */
+        }
+
+        .sidebar a {
+            color: #E64A19;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #E64A19;
+            color:white;
+        }
+
+        .sidebar a.active {
+            background-color: #E64A19;
+            color:white;
+        }
+        .logo{
+            width: 100px;
+            height: auto;
+        }
+
+        .content {
+            margin-left: 0;
+            padding: 20px;
+            flex-grow: 0;
+            transition: margin-left 0.3s;
+        }
+
+        .content.shift {
+            margin-left: 250px;
+        }
+
+        .menu-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color:#E64A19;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 2000;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1em;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table thead {
+            background-color:  #E64A19;
+            color: #fff;
+        }
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+        .no-orders {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+            color: #666;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            margin-top: 20px;
+        }
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .tab.active {
+            background-color:  #E64A19;
+            color: #fff;
+            border-color:  #E64A19;
+        }
+    </style>
+</head>
+<body>
+
+    <header>    <button class="menu-button" onclick="toggleSidebar()">&#9776;</button>
+
+    <div class="sidebar">
+        <br>
+        <br>
+        <a href="index.html" onclick="setActive(event)">Home</a>
+        <a href="cart.html" onclick="setActive(event)"> Cart</a>
+        <a href="history.html".html" onclick="setActive(event)">History</a>
+        <a href="CONTACTUS.HTML" onclick="setActive(event)">Contact Us</a>
+        <a href="login.html" onclick="setActive(event)">Login in </a>
+    </div>
+    </header>
+    <br>
+    <br>
+    <br>
+    <hr color="#E64A19">
+    <br>
+    <br>
+
+
+    <div class="container">
+        <h1>Order History</h1>
+
+        <div class="tab-container">
+            <div class="tab active" onclick="showSection('customer')">Customer Orders</div>
+            <div class="tab" onclick="showSection('partner')">Delivery Partner</div>
+        </div>
+
+        <div id="customer" class="section">
+            <h2>Customer Orders</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Date</th>
+                        <th>Items</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#12345</td>
+                        <td>Jan 15, 2025</td>
+                        <td>3</td>
+                        <td> RUPPEES 59.97</td>
+                        <td>Delivered</td>
+                    </tr>
+                    <tr>
+                        <td>#12346</td>
+                        <td>Jan 20, 2025</td>
+                        <td>2</td>
+                        <td>RUPEES 39.98</td>
+                        <td>Shipped</td>
+                    </tr>
+                    <tr>
+                        <td>#12347</td>
+                        <td>Jan 22, 2025</td>
+                        <td>1</td>
+                        <td>RUPEES 19.99</td>
+                        <td>Processing</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="partner" class="section" style="display: none;">
+            <h2>Delivery Partner</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Pickup Date</th>
+                        <th>Customer Address</th>
+                        <th>Delivery Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#12345</td>
+                        <td>Jan 15, 2025</td>
+                        <td>123 , roll no 57 2E </td>
+                        <td>Delivered</td>
+                    </tr>
+                    <tr>
+                        <td>#12346</td>
+                        <td>Jan 20, 2025</td>
+                        <td>456, roll no67 2e </td>
+                        <td>Shipped</td>
+                    </tr>
+                    <tr>
+                        <td>#12347</td>
+                        <td>Jan 22, 2025</td>
+                        <td>789,roll no45,2d   </td>
+                        <td>Processing</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+<br>
+<br> 
+<br>
+<br>
+<br>
+<BR>
+    <footer>
+        <p>&copy; 2025 ShopEase. All rights reserved.</p>
+    </footer>
+
+    <script>
+         function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const content = document.querySelector('.content');
+            sidebar.classList.toggle('open');
+            content.classList.toggle('shift');
+        }
+
+        function setActive(event) {
+            const links = document.querySelectorAll('.sidebar a');
+            links.forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById(sectionId).style.display = 'block';
+            document.querySelector(`.tab-container .tab[onclick="showSection('${sectionId}')"]`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
