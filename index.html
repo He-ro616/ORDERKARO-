@@ -183,10 +183,20 @@
         </div>
         <h1>ORDER <i>karo!</i></h1>
         <p> Saman chahiye hum hai na !</p>
-        <div class="search-bar">
-            <input type="text" placeholder="What do you need? (e.g., snacks, books)">
-            <button>Search</button>
-        </div>
+  <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="What do you need? (e.g., snacks, books)">
+        <select id="snackList">
+            <option value="">-- Select a Snack --</option>
+            <option value="chips">Chips</option>
+            <option value="chocolate">Chocolate</option>
+            <option value="cookies">Cookies</option>
+            <option value="popcorn">Popcorn</option>
+            <option value="nuts">Nuts</option>
+            <option value="soda">Soda</option>
+            <option value="juice">Juice</option>
+        </select>
+        <button onclick="searchItem()">Search</button>
+    </div>
     </header>
 
     <section class="features">
